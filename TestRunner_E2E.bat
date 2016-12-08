@@ -27,9 +27,12 @@ git clone https://github.com/mtnview101/Title_Validation_Dima2Dima.git
 CD %REPO_NAME%
 timeout 2
 CALL mvn clean site test -Dtest=AllTests -Dbuild.version="1.1"
+timeout 2
+CALL mvn package -Dbuild.version="%APP_VERSION%"
 ECHO.
 ECHO Executing Java programm ...
-java -cp C:\%WS_DIR%\%REPO_NAME%\target\%REPO_NAME%-%APP_VERSION%.jar %MAIN_CLASS% %ARG_01%
+::java -cp C:\%WS_DIR%\%REPO_NAME%\target\%REPO_NAME%-%APP_VERSION%.jar %MAIN_CLASS% %ARG_01%
+java -jar C:\%WS_DIR%\%REPO_NAME%\target\%REPO_NAME%-%APP_VERSION%-jar-with-dependencies.jar
 GOTO END
 
 :EXIT_JAVA
